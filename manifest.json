@@ -1,0 +1,20 @@
+  {
+    "name": "FP-Font-Blocker",
+    "version": "0.1",
+    "description": "Blocks fingerprint font detection",
+    "manifest_version": 2,
+    "web_accessible_resources": [
+        "script/blocker.js"
+      ],
+    "content_scripts": [
+        {
+          "matches": ["http://*/*", "https://*/*"],
+          "all_frames": true,
+          "js": ["script/inject.js"],
+          "run_at": "document_start"
+        }
+      ],
+    "permissions": [
+        "activeTab"
+      ]
+  }
