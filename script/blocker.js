@@ -30,7 +30,7 @@ function getGenericFontFamily(element) {
     return r;
 }
 
-Object.defineProperty(HTMLSpanElement.prototype, 'offsetWidth', {
+Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
     get: function() {
         if (random) {
             return Math.round(Math.random()*1000);
@@ -52,7 +52,7 @@ Object.defineProperty(HTMLSpanElement.prototype, 'offsetWidth', {
     },
 });
 
-Object.defineProperty(HTMLSpanElement.prototype, "offsetHeight", {
+Object.defineProperty(HTMLElement.prototype, "offsetHeight", {
     get: function() {
         if (random) {
             return Math.round(Math.random()*1000);
@@ -74,7 +74,7 @@ Object.defineProperty(HTMLSpanElement.prototype, "offsetHeight", {
     },
 });
 
-HTMLSpanElement.prototype.getBoundingClientRect = function() {
+HTMLElement.prototype.getBoundingClientRect = function() {
     const r = getBoundingClientRect_T.call(this);
     r.width = this.offsetWidth;
     r.height = this.offsetHeight;
