@@ -7,7 +7,7 @@ const getBoundingClientRect_T = HTMLElement.prototype.getBoundingClientRect;
 const offsetHeightGetter_T = HTMLElement.prototype.__lookupGetter__('offsetHeight');
 const offsetWidthGetter_T = HTMLElement.prototype.__lookupGetter__('offsetWidth');
 
-const genericFontFamilies = ['serif', 'sans-serif', 'cursive', 'fantasy', 'monospace'];
+const genericFontFamilies = ['serif', 'sans-serif', 'cursive', 'fantasy', 'monospace', 'sans serif'];
 
 function getGenericFontFamily(element) {
     if (!element) {
@@ -15,7 +15,7 @@ function getGenericFontFamily(element) {
     }
     // fetch the font families for the current element
     const f = element.style.getPropertyValue('font-family');
-    const fontFamilies = f.replace(/ /g, '').split(',');
+    const fontFamilies = f.toLowerCase().replace(/ /g, '').split(',');
     // attempt to extract the first generic font family
     for (let idx in fontFamilies) {
         if (genericFontFamilies.includes(fontFamilies[idx])) {
