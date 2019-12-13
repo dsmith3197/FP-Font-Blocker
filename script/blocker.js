@@ -1,5 +1,6 @@
 // log verbosity control 
-const verbose = false;
+const verbose = true;
+const random = false;
 
 // HTMLElement
 const getBoundingClientRect_T = HTMLElement.prototype.getBoundingClientRect;
@@ -12,7 +13,6 @@ function getGenericFontFamily(element) {
     if (!element) {
         return '';
     }
-
     // fetch the font families for the current element
     const f = element.style.getPropertyValue('font-family');
     const fontFamilies = f.replace(/ /g, '').split(',');
@@ -32,12 +32,15 @@ function getGenericFontFamily(element) {
 
 Object.defineProperty(HTMLSpanElement.prototype, 'offsetWidth', {
     get: function() {
+        if (random) {
+            return Math.round(Math.random()*1000);
+        }
         const f = this.style.getPropertyValue('font-family');
         const genericFontFamily = getGenericFontFamily(this);
-        if (genericFontFamily == '') {
-            return offsetWidthGetter_T.call(this);
-        }
         const a = offsetWidthGetter_T.call(this);
+        if (a === 0) {
+            return 0;
+        }
         this.style.setProperty('font-family', genericFontFamily);
         const r =  offsetWidthGetter_T.call(this);
         if (verbose) {
@@ -51,12 +54,15 @@ Object.defineProperty(HTMLSpanElement.prototype, 'offsetWidth', {
 
 Object.defineProperty(HTMLSpanElement.prototype, "offsetHeight", {
     get: function() {
+        if (random) {
+            return Math.round(Math.random()*1000);
+        }
         const f = this.style.getPropertyValue('font-family');
         const genericFontFamily = getGenericFontFamily(this);
-        if (genericFontFamily == '') {
-            return offsetHeightGetter_T.call(this);
-        }
         const a = offsetHeightGetter_T.call(this);
+        if (a === 0) {
+            return 0;
+        }
         this.style.setProperty('font-family', genericFontFamily);
         const r =  offsetHeightGetter_T.call(this);
         if (verbose) {
