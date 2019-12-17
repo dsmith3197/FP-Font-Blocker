@@ -23,11 +23,7 @@ function getGenericFontFamily(element) {
         }
     }
     // recursively check parent if a generic font family hasn't been found 
-    const r = getGenericFontFamily(element.parentElement);
-    if (r == '') {
-        return 'sans-serif';
-    }
-    return r;
+    return getGenericFontFamily(element.parentElement);
 }
 
 Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
